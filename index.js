@@ -52,22 +52,57 @@ var tinhThue = function () {
   var hoTen = document.getElementById("txt-hoTen1").value;
   var tongThuNhap = document.getElementById("txt-tongThuNhap").value * 1;
   var nguoiPhuThuoc = document.getElementById("txt-phuThuoc").value * 1;
+  console.log(nguoiPhuThuoc);
 
-  if (soKw <= 50) {
-    tienDien = 500 * soKw;
-  } else if (50 < soKw && soKw <= 100) {
-    tienDien = 50 * 500 + (soKw - 50) * 650;
-  } else if (100 < soKw && soKw <= 200) {
-    tienDien = 50 * 500 + 50 * 650 + (soKw - 100) * 850;
-  } else if (200 < soKw && soKw <= 350) {
-    tienDien = 50 * 500 + 50 * 650 + 100 * 850 + (soKw - 200) * 1100;
-  } else {
-    tienDien =
-      50 * 500 + 50 * 650 + 100 * 850 + 150 * 1100 + (soKw - 350) * 1300;
-  }
+  var thuNhapChiuThue = tongThuNhap - 4e6 - nguoiPhuThuoc * 1600000;
 
   document.getElementById(
     "ketQua3"
-  ).innerHTML = `Họ tên: ${hoTen}; Tiền điện ${tienDien}`;
+  ).innerHTML = `Họ tên: ${hoTen}; Tiền thuế thu nhập cá nhân ${tinhThuNhapChiuThue(
+    thuNhapChiuThue
+  )}`;
 };
+
+// Tính thuế dựa trên mức thu nhap
+function tinhThuNhapChiuThue(thuNhapChiuThue) {
+  if (thuNhapChiuThue < 0) {
+    alert("Nghèo còn đòi tính thuế");
+    return 0;
+  } else if (thuNhapChiuThue <= 60e6) {
+    thuNhapChiuThue = thuNhapChiuThue * 0.05;
+  } else if (60e6 < thuNhapChiuThue && thuNhapChiuThue <= 120e6) {
+    thuNhapChiuThue = 60e6 * 0.05 + (thuNhapChiuThue - 60e6) * 0.1;
+  } else if (120e6 < thuNhapChiuThue && thuNhapChiuThue <= 210e6) {
+    thuNhapChiuThue =
+      60e6 * 0.05 + 60e6 * 0.1 + (thuNhapChiuThue - 120e6) * 0.15;
+  } else if (210e6 < thuNhapChiuThue && thuNhapChiuThue <= 384e6) {
+    thuNhapChiuThue =
+      60e6 * 0.05 + 60e6 * 0.1 + 90e6 * 0.15 + (thuNhapChiuThue - 210e6) * 0.2;
+  } else if (384e6 < thuNhapChiuThue && thuNhapChiuThue <= 624e6) {
+    thuNhapChiuThue =
+      60e6 * 0.05 +
+      60e6 * 0.1 +
+      90e6 * 0.15 +
+      174e6 * 0.2 +
+      (thuNhapChiuThue - 384e6) * 0.25;
+  } else if (624e6 < thuNhapChiuThue && thuNhapChiuThue <= 960e6) {
+    thuNhapChiuThue =
+      60e6 * 0.05 +
+      60e6 * 0.1 +
+      90e6 * 0.15 +
+      174e6 * 0.2 +
+      240e6 * 0.25 +
+      (thuNhapChiuThue - 624e6) * 0.3;
+  } else {
+    thuNhapChiuThue =
+      60e6 * 0.05 +
+      60e6 * 0.1 +
+      90e6 * 0.15 +
+      174e6 * 0.2 +
+      240e6 * 0.25 +
+      336e6 * 0.3 +
+      (thuNhapChiuThue - 960e6) * 0.35;
+  }
+  return thuNhapChiuThue;
+}
 document.getElementById("btnKetQua3").onclick = tinhThue;
