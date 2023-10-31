@@ -52,7 +52,6 @@ var tinhThue = function () {
   var hoTen = document.getElementById("txt-hoTen1").value;
   var tongThuNhap = document.getElementById("txt-tongThuNhap").value * 1;
   var nguoiPhuThuoc = document.getElementById("txt-phuThuoc").value * 1;
-  console.log(nguoiPhuThuoc);
 
   var thuNhapChiuThue = tongThuNhap - 4e6 - nguoiPhuThuoc * 1600000;
 
@@ -106,3 +105,50 @@ function tinhThuNhapChiuThue(thuNhapChiuThue) {
   return thuNhapChiuThue;
 }
 document.getElementById("btnKetQua3").onclick = tinhThue;
+
+// Bài 4: Tinh tiền cáp
+function disableInput() {
+  var e = document.getElementById("txt-khachHang").value;
+  document.getElementById("txt-ketNoi").style.display =
+    "Doanh Nghiệp" == e ? "block" : "none";
+}
+
+// Phí của Nhà Dân
+const phiHoaDonNhaDan = 4.5;
+const phiDichVuNhaDan = 20.5;
+const thueKenhNhaDan = 7.5;
+
+// Phí của Doanh Nghiệp
+const phiHoaDonDN = 15;
+const phiDichVuDN = 75; // 5
+const thueKenhDN = 50;
+
+function tinhTienhCap() {
+  var khachHang = document.getElementById("txt-khachHang").value;
+  var maKH = document.getElementById("txt-maKH").value * 1;
+  var soKenh = document.getElementById("txt-soKenh").value * 1;
+  var soKetNoi = document.getElementById("txt-ketNoi").value * 1;
+
+  var tienND = phiHoaDonNhaDan + phiDichVuNhaDan + thueKenhNhaDan * soKenh;
+
+  var tienDN = "";
+  if (soKetNoi <= 10) {
+    tienDN = phiHoaDonDN + phiDichVuDN + soKenh * thueKenhDN;
+  } else {
+    tienDN =
+      phiHoaDonDN + phiDichVuDN + soKenh * thueKenhDN + (soKetNoi - 10) * 5;
+  }
+
+  var KQ = "";
+  if (khachHang == "Nhà Dân") {
+    KQ = tienND;
+  } else {
+    KQ = tienDN;
+  }
+
+  document.getElementById(
+    "ketQua4"
+  ).innerHTML = `Mã Khách Hàng: ${maKH}, Tiền cáp: $${KQ} `;
+}
+
+document.getElementById("btnKetQua4").onclick = tinhTienhCap;

@@ -132,6 +132,47 @@
       <button class="btn btn-dark" id="btnKetQua3">Kết quả</button>
       <div class="mb-3" id="ketQua3"></div>
     </div>
+    <div class="container">
+      <h2>Bài 4: TÍNH TIỀN CÁP</h2>
+      <div class="mb-3 d-flex">
+        <select
+          class="form-select"
+          id="txt-khachHang"
+          aria-label="Default select example"
+          onchange="disableInput()"
+        >
+          <option value="0" selected>Chọn loại khách hàng</option>
+          <option value="Nhà Dân">Nhà Dân</option>
+          <option value="Doanh Nghiệp">Doanh Nghiệp</option>
+        </select>
+        <input
+          type="text"
+          class="form-control"
+          name=""
+          id="txt-maKH"
+          aria-describedby="helpId"
+          placeholder="Nhập Mã Khách Hàng"
+        />
+        <input
+          type="number"
+          class="form-control"
+          name=""
+          id="txt-soKenh"
+          aria-describedby="helpId"
+          placeholder="Số Kênh Cao Cấp"
+        />
+        <input
+          type="number"
+          style="display: none"
+          class="form-control form__input"
+          name=""
+          id="txt-ketNoi"
+          placeholder="Số kết nối"
+        />
+      </div>
+      <button class="btn btn-dark" id="btnKetQua4">Kết quả</button>
+      <div class="mb-3" id="ketQua4"></div>
+    </div>
     <!-- Bootstrap JavaScript Libraries -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
